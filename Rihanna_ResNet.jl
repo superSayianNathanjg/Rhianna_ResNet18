@@ -68,19 +68,13 @@ model = Chain(
     
     # ResNet 18 layer: The simplest "ResNet"-type connection is just SkipConnection(layer, +)
     SkipConnection(convBlock(64, 64), Combinator(64, 64)), # output = 5*5*64
-    # Relu here? 
 
     # IdentityBlock must have the same input_filter and filter size. Otherwiese it gives error identityBlock(64, 128) -> error
     SkipConnection(identityBlock(64, 64), +), # output = 5*5*64
-    # Relu here? 
     SkipConnection(identityBlock(64, 64), +), # output = 5*5*64
-    # Relu here?
     SkipConnection(convBlock(64, 128), Combinator(64, 128)), # output = 3*3*128
-    # Relu here? 
     SkipConnection(identityBlock(128, 128), +), # output = 3*3*128
-    # Relu here? 
     SkipConnection(identityBlock(128, 128), +), # output = 3*3*128
-    # Relu here? 
 
     # full connections layers
     MaxPool((2, 2)), # 1*1*128
